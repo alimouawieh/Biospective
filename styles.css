@@ -1,8 +1,38 @@
 body {
-   background-image: url("backgroundWood.jpeg");
+   background-image: url("images/black.jpg");
   font-family: arial;
 }
 
 label {
 color: white;
+}
+
+span.credits {
+    background: url(images/add.svg) no-repeat top left;
+    background-size: contain;
+    background-color: Transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+}
+
+span.accept {
+    background: url(images/success.svg) no-repeat top left;
+    background-size: contain;
+    background-color: Transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+}
+
+span.reject {
+    background: url(images/error.svg) no-repeat top left;
+    background-size: contain;
+    background-color: Transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
 }

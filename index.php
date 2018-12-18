@@ -18,55 +18,178 @@
   include("createDB.php");
   ?>
 
-<div style= "  position: relative; top: 200px;">
-  <div class="container">
-
-  <form class="form-horizontal" method="get" action="addEvent.php">
-
-    <div class="form-group">
-    <div class="form-group col-md-2">
-      <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title" name="title">
-    </div>
-    </div>
 
 
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea  class="form-control" rows="3" id="description" name="description"></textarea>
-  </div>
+
+
+
+<div style="position: relative; top:100px;">
+<div class="container">
+<div class="row justify-content-around">
+
+  <?php
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "CalenderDB";
+
+  // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+
+$sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender");
+
+
+while ($row = mysqli_fetch_array($sql_selectAll))
+{
+
+
+$check = $row['status'];
+
+echo '<div class="col-3">';
+
+if($check == "Completed")
+{
+  echo '<div class="card text-white bg-success mb-3" style="width: 18rem; height:20rem;">';
+
+}
+else
+{
+  echo '<div class="card text-white bg-danger mb-3" style="width: 18rem; height:20rem;">';
+
+}
+echo ' <div class="card-header">'.$row['title'].'</div>';
+echo '  <div class="card-body">';
+echo '    <h5 class="card-title">'.$row['dueDate'].'</h5>';
+echo '    <p class="card-text">'.$row['description'].'</p>';
+echo '    <p class="card-text">'.$row['status'].'</p>';
+
+echo '  </div>';
+echo '  </div>';
+
+echo '<div style="position:relative; left:45px;">';
+echo '<div class="row ">';
+
+echo '<div class="col-2">';
+echo '    <form action="addEvent.php">';
+echo '  <button type="submit"><span class="accept"></span></button>';
+echo '</form>';
+echo '</div>';
+
+echo '<div class="col-2">';
+echo '<form action="addEvent.php">';
+echo '<button type="submit"><span class="reject"></span></button>';
+echo '</form>';
+echo '  </div>';
+
+echo '  </div>';
+echo '  </div>';
+
+echo '  <br>';
+echo '  <br>';
+echo '  <br>';
+
+echo '  </div>';
+
+
+}
+
+  $conn->close();
+
+
+   ?>
+ </div>
+
+
 
   <div class="form-group">
-    <div class="form-group col-md-2">
+<div class="d-flex justify-content-center">
+    <form action="addEvent.php">
+  <button type="submit"><span class="credits"></span></button>
+</form>
+</div>
+</div>
 
-      <label for="status">Status</label>
-      <select class="form-control form-control-lg " id="status" name="status">
-        <option>Completed</option>
-        <option>Not Done</option>
-      </select>
-    </div>
-    </div>
+<div class="container">
+<div class="row justify-content-around">
 
-    <div class="form-group">
-    <div class="form-group col-md-3">
-      <label for="dueDate">Due Date:</label>
-      <input type="datetime-local" class="form-control" id="dueDate" name="dueDate">
-    </div>
-    </div>
+<div class="col-4">
 
 
-
-
-    <div class="form-group">
-    <button type="submit" class="btn btn-default">Submit</button>
+<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Secondary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
+</div>
 
-  </form>
+
+<div style="position:relative; left:35px;">
+<div class="row ">
+<div class="col-2">
+    <form action="addEvent.php">
+  <button type="submit"><span class="accept"></span></button>
+</form>
+</div>
+
+<div class="col-2">
+<form action="addEvent.php">
+<button type="submit"><span class="reject"></span></button>
+</form>
+
+
+</div>
+</div>
 </div>
 </div>
 
 
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+
+<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Secondary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+<div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Success card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+<div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Danger card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
 </body>
-</html>
