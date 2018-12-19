@@ -9,6 +9,8 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link href="styles.css" rel="stylesheet" type="text/css"  />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
@@ -18,14 +20,10 @@
   include("createDB.php");
   ?>
 
-
-
-
-
-
 <div style="position: relative; top:100px;">
 <div class="container">
 <div class="row justify-content-around">
+
 
   <?php
   $servername = "localhost";
@@ -49,60 +47,96 @@ while ($row = mysqli_fetch_array($sql_selectAll))
 
 
 $check = $row['status'];
+$dueTime = $row['dueTime'];
+$d = strtotime($dueTime);
+$date = date("h:i",$d);
 
 echo '<div class="col-3">';
 
-if($check == "Completed")
+
+if($check == "yes")
 {
-  echo '<div class="card text-white bg-success mb-3" style="width: 18rem; height:20rem;">';
+
+
+echo'  <div class="card text-white bg-success mb-3" style="width: 23rem; height:28rem;">';
 
 }
 else
 {
-  echo '<div class="card text-white bg-danger mb-3" style="width: 18rem; height:20rem;">';
+
+  echo '<div class="card text-white bg-danger mb-3" style="width: 23rem; height:28rem;">';
 
 }
-echo ' <div class="card-header">'.$row['title'].'</div>';
-echo '  <div class="card-body">';
-echo '    <h5 class="card-title">'.$row['dueDate'].'</h5>';
-echo '    <p class="card-text">'.$row['description'].'</p>';
-echo '    <p class="card-text">'.$row['status'].'</p>';
+?>
 
-echo '  </div>';
-echo '  </div>';
+ <div class="card-header"><?= $row['title'] ?> </div>
+<div class="card-body">
+    <h5 class="card-title"><?= $row['dueDate'] ?>       <?= $date ?></h5>
+ <p class="card-text"><?= $row['description'] ?></p>
 
-echo '<div style="position:relative; left:45px;">';
-echo '<div class="row ">';
+ <?php if($check=="yes")
+ {
+  ?>
+ <div class="card-footer">
+   <p>Completed at:</p>
+  <p><?=$row['completedAt']?></p>
+</div>
+<?php } ?>
+ </div>
 
-echo '<div class="col-2">';
-echo '    <form action="addEvent.php">';
-echo '  <button type="submit"><span class="accept"></span></button>';
-echo '</form>';
+
+ <?php
 echo '</div>';
+  ?>
 
-echo '<div class="col-2">';
-echo '<form action="addEvent.php">';
-echo '<button type="submit"><span class="reject"></span></button>';
-echo '</form>';
-echo '  </div>';
 
-echo '  </div>';
-echo '  </div>';
+<div style="position:relative; left:46px;">
+<div class="row ">
 
-echo '  <br>';
-echo '  <br>';
-echo '  <br>';
+<div class="col-2">
+    <form action="updateStatus.php" method="get">
+  <button title="Event Completed" type="submit" value="yes" name="Buttom"><span class="accept"></span></button>
+<input type='hidden' name='id' value='<?= $row["id"] ?>'/>
+</form>
+</div>
 
-echo '  </div>';
+
+
+<div class="col-2">
+<form action="editEvent.php" method="get">
+<button title="Edit Event" type="submit" value="" name="Buttom"><span class="edit"></span></button>
+<input type='hidden' name='id' value='<?= $row["id"] ?>'/>
+</form>
+  </div>
+
+
+<div class="col-2">
+<form action="updateStatus.php" method="get">
+<button title="Event Not Finished" type="submit" value="no" name="Buttom"><span class="reject"></span></button>
+<input type='hidden' name='id' value='<?= $row["id"] ?>'/>
+</form>
+  </div>
+
+  </div>
+  </div>
+
+  <br>
+ <br>
+  <br>
+
+  </div>
+  <?php
 
 
 }
+
+echo '</div>';
 
   $conn->close();
 
 
    ?>
- </div>
+
 
 
 
@@ -131,21 +165,22 @@ echo '  </div>';
 
 <div style="position:relative; left:35px;">
 <div class="row ">
+
 <div class="col-2">
-    <form action="addEvent.php">
-  <button type="submit"><span class="accept"></span></button>
+    <form action="updateStatus.php" method="get">
+  <button type="submit" value="yes" name="Buttom"><span class="accept"></span></button>
 </form>
 </div>
 
 <div class="col-2">
-<form action="addEvent.php">
-<button type="submit"><span class="reject"></span></button>
+<form action="updateStatus.php" method="get">
+<button type="submit" value="no" name="Buttom"><span class="reject"></span></button>
 </form>
+</div>
 
+</div>
+</div>
 
-</div>
-</div>
-</div>
 </div>
 
 
@@ -185,7 +220,7 @@ echo '  </div>';
 </div>
 </div>
 </div>
-
+</div>
 
 
 

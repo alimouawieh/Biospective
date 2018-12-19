@@ -36,3 +36,14 @@ span.reject {
     height: 30px;
     width: 30px;
 }
+
+
+span.edit {
+    background: url(images/settings.svg) no-repeat top left;
+    background-size: contain;
+    background-color: Transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+}
