@@ -4,6 +4,7 @@ $title = $_GET["title"];
 $description = $_GET["description"];
 $status = $_GET["status"];
 $dueDate = $_GET["dueDate"];
+$dueTime= $_GET["dueTime"];
 $timeNow = date('Y-m-d G:i:s');
 
 
@@ -26,8 +27,8 @@ if ($conn->connect_error) {
 }
 
 
-$sql_addEvent = "INSERT INTO todoCalender (title, description, status, dueDate, createdAt)
-VALUES ('$title', '$description' , '$status', '$dueDate', now())";
+$sql_addEvent = "INSERT INTO todoCalender (title, description, status, dueDate,dueTime, createdAt)
+VALUES ('$title', '$description' , '$status', '$dueDate', '$dueTime', now())";
 
 
 

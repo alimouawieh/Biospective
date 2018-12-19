@@ -39,8 +39,8 @@
 
       <label for="status">Status</label>
       <select class="form-control form-control-lg " id="status" name="status">
-        <option>Completed</option>
-        <option>Not Done</option>
+        <option>yes</option>
+        <option>no</option>
       </select>
     </div>
     </div>
@@ -48,7 +48,14 @@
     <div class="form-group">
     <div class="form-group col-md-3">
       <label for="dueDate">Due Date:</label>
-      <input type="datetime-local" class="form-control" id="dueDate" name="dueDate">
+      <input type="date" class="form-control" id="dueDate" name="dueDate">
+    </div>
+    </div>
+
+    <div class="form-group">
+    <div class="form-group col-md-3">
+      <label for="dueTime">Due Time:</label>
+      <input type="time" class="form-control" id="dueTime" name="dueTime">
     </div>
     </div>
 
