@@ -2,7 +2,7 @@
 
 $title = $_GET["title"];
 $description = $_GET["description"];
-$status = $_GET["status"];
+$status = "no";
 $dueDate = $_GET["dueDate"];
 $dueTime= $_GET["dueTime"];
 $timeNow = date('Y-m-d G:i:s');

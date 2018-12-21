@@ -47,6 +47,7 @@ $date = date("M d, Y");
     </div>
   </nav>
 
+
   <div class="d-flex justify-content-center" >
     <h1 style="color:yellow;"> Calendar </h1>
   </div>
@@ -75,7 +76,7 @@ $date = date("M d, Y");
   }
 
 
-$sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender");
+$sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender ORDER BY dueDate");
 
 
 while ($row = mysqli_fetch_array($sql_selectAll))
