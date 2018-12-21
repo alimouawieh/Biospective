@@ -41,6 +41,9 @@ $date = date("M d, Y");
         <li class="nav-item">
           <p class="nav-link" style="color:orange; position:relative; left:1000px; top:13px;" ><?=$date?></p>
         </li>
+        <li class="nav-item">
+          <p class="nav-link" style="color:orange; " ><div id="time" style="color:orange; position:relative; left:1100px; top:-3px; "></div></p>
+        </li>
       </ul>
 
     </div>
@@ -111,4 +114,31 @@ $date = date("M d, Y");
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
+
+<script>
+
+
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  // add a zero in front of numbers<10
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+  t = setTimeout(function() {
+    startTime()
+  }, 500);
+}
+startTime();
+</script>
 </html>

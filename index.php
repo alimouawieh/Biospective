@@ -18,6 +18,9 @@
 <body>
 
   <?php
+
+//include("example.php");
+
   date_default_timezone_set("America/New_York");
 $date = date("M d, Y");
    ?>
@@ -41,6 +44,9 @@ $date = date("M d, Y");
         </li>
         <li class="nav-item">
           <p class="nav-link" style="color:orange; position:relative; left:1000px; top:13px;" ><?=$date?></p>
+        </li>
+        <li class="nav-item">
+          <p class="nav-link" style="color:orange; " ><div id="time" style="color:orange; position:relative; left:1100px; top:-3px; "></div></p>
         </li>
       </ul>
 
@@ -201,17 +207,52 @@ echo '</div>';
 
 <div class="form-group">
 <div class="d-flex justify-content-center">
+  <div class="row">
   <form action="downloadCsv.php">
-<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-download"></span>Download CVS</button>
+<button type="submit" class="btn btn-default" style="position:relative; right:3px;"><span class="glyphicon glyphicon-download"></span>Download CVS</button>
 </form>
-</div>
-</div>
+
+<form action="downloadJson.php">
+<button type="submit" class="btn btn-default" style="position:relative; left:3px;"><span class="glyphicon glyphicon-download"></span>Download Json</button>
+</form>
 
 </div>
 </div>
 </div>
 
+</div>
+</div>
+</div>
 
+
+<script>
+
+
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  // add a zero in front of numbers<10
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+  t = setTimeout(function() {
+    startTime()
+  }, 500);
+}
+startTime();
+
+
+</script>
 
 
 
