@@ -199,6 +199,14 @@ echo '</div>';
 </div>
 
 
+<div class="form-group">
+<div class="d-flex justify-content-center">
+  <form action="downloadCsv.php">
+<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-download"></span>Download CVS</button>
+</form>
+</div>
+</div>
+
 </div>
 </div>
 </div>
