@@ -20,6 +20,8 @@
   <?php
   date_default_timezone_set("America/New_York");
 $date = date("M d, Y");
+
+include("DataBase/alert.php");
    ?>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -144,7 +146,7 @@ while ($row = mysqli_fetch_array($sql))
 
 <div id="titleDIV" style="color:white; position:relative; top:50px; ">
   <label for="title">Title:</label>
-  <form action="editEventDB.php" method="get">
+  <form action="DataBase/editEventDB.php" method="get">
   <input type="text" class="form-control" id="title" name="input" required>
   <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
   <input type='hidden' name='type' value='title'/>
@@ -155,7 +157,7 @@ while ($row = mysqli_fetch_array($sql))
 
 <div id="descriptionDIV" style="color:white; position:relative; top:50px; ">
   <label for="description">Description:</label>
-  <form action="editEventDB.php" method="get">
+  <form action="DataBase/editEventDB.php" method="get">
 <textarea  class="form-control" style="width :400px;" rows="3" id="description" name="input" required></textarea>
 <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
 <input type='hidden' name='type' value='description'/>
@@ -166,7 +168,7 @@ while ($row = mysqli_fetch_array($sql))
 
 <div id="dateDIV" style="color:white; position:relative; top:50px; ">
   <label for="title">Date:</label>
-  <form action="editEventDB.php" method="get">
+  <form action="DataBase/editEventDB.php" method="get">
   <input type="date" class="form-control" id="date" name="input" required>
   <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
   <input type='hidden' name='type' value='date'/>
@@ -177,7 +179,7 @@ while ($row = mysqli_fetch_array($sql))
 
 <div id="timeDIV" style="color:white; position:relative; top:50px; ">
   <label for="time">Date:</label>
-  <form action="editEventDB.php" method="get">
+  <form action="DataBase/editEventDB.php" method="get">
   <input type="time" class="form-control" id="date" name="input" required>
   <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
   <input type='hidden' name='type' value='time'/>

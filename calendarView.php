@@ -14,7 +14,9 @@
   <link href="styles.css" rel="stylesheet" type="text/css"  />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
-
+<?php
+include("DataBase/alert.php");
+?>
 <body>
 
   <?php
@@ -71,9 +73,6 @@ $date = date("M d, Y");
     <h1 style="color:yellow;"> Calendar </h1>
   </div>
 
-  <div class="d-flex justify-content-center" >
-    <h2 style="color:yellow;"> <?= $date ?> </h2>
-  </div>
 
   <div class="d-flex justify-content-center" >
     <div class="form-group col-md-2">
@@ -97,9 +96,7 @@ $date = date("M d, Y");
     $password = "";
     $dbname = "CalenderDB";
 
-    // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -174,7 +171,7 @@ $date = date("M d, Y");
   <div class="row ">
 
   <div class="col-2">
-      <form action="updateStatus.php" method="get">
+      <form action="DataBase/updateStatus.php" method="get">
     <button title="Event Completed" type="submit" value="yes" name="Buttom"><span class="accept"></span></button>
   <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
   </form>
@@ -191,7 +188,7 @@ $date = date("M d, Y");
 
 
   <div class="col-2">
-  <form action="updateStatus.php" method="get">
+  <form action="DataBase/updateStatus.php" method="get">
   <button title="Event Not Finished" type="submit" value="no" name="Buttom"><span class="reject"></span></button>
   <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
   </form>

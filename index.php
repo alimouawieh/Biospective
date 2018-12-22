@@ -19,7 +19,7 @@
 
   <?php
 
-//include("example.php");
+include("DataBase/alert.php");
 
   date_default_timezone_set("America/New_York");
 $date = date("M d, Y");
@@ -59,7 +59,7 @@ $date = date("M d, Y");
 
 
   <?php
-  include("createDB.php");
+  include("DataBase/createDB.php");
   ?>
 
 <div style="position: relative; top:100px;">
@@ -150,7 +150,7 @@ echo '</div>';
 <div class="row ">
 
 <div class="col-2">
-    <form action="updateStatus.php" method="get">
+    <form action="DataBase/updateStatus.php" method="get">
   <button title="Event Completed" type="submit" value="yes" name="Buttom"><span class="accept"></span></button>
 <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
 </form>
@@ -167,7 +167,7 @@ echo '</div>';
 
 
 <div class="col-2">
-<form action="updateStatus.php" method="get">
+<form action="DataBase/updateStatus.php" method="get">
 <button title="Event Not Finished" type="submit" value="no" name="Buttom"><span class="reject"></span></button>
 <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
 </form>
@@ -208,11 +208,11 @@ echo '</div>';
 <div class="form-group">
 <div class="d-flex justify-content-center">
   <div class="row">
-  <form action="downloadCsv.php">
+  <form action="DataBase/downloadCsv.php">
 <button type="submit" class="btn btn-default" style="position:relative; right:3px;"><span class="glyphicon glyphicon-download"></span>Download CVS</button>
 </form>
 
-<form action="downloadJson.php">
+<form action="DataBase/downloadJson.php">
 <button type="submit" class="btn btn-default" style="position:relative; left:3px;"><span class="glyphicon glyphicon-download"></span>Download Json</button>
 </form>
 

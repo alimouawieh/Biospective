@@ -56,7 +56,7 @@ if ($conn->query($sql) === TRUE) {
 
 $conn->close();
 
-header("Location: editEvent.php?id=$id");
+header("Location: ../editEvent.php?id=$id");
 
 
  ?>

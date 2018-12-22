@@ -4,10 +4,8 @@
 <title> Biospective Calender </title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-  <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <link href="styles.css" rel="stylesheet" type="text/css"  />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -18,6 +16,8 @@
   <?php
   date_default_timezone_set("America/New_York");
 $date = date("M d, Y");
+
+include("DataBase/alert.php");
    ?>
 
 
@@ -57,7 +57,7 @@ $date = date("M d, Y");
 <div style= "  position: relative; top: 100px;">
   <div class="container">
 
-  <form class="form-horizontal" method="get" action="addEventDB.php">
+  <form class="form-horizontal" method="get" action="DataBase/addEventDB.php">
 
     <div class="form-group">
     <div class="form-group col-md-2">
@@ -72,18 +72,6 @@ $date = date("M d, Y");
       <textarea  class="form-control" rows="3" id="description" name="description" required></textarea>
   </div>
 
-<!--
-  <div class="form-group">
-    <div class="form-group col-md-2">
-
-      <label for="status">Status</label>
-      <select class="form-control form-control-lg " id="status" name="status">
-        <option>yes</option>
-        <option>no</option>
-      </select>
-    </div>
-    </div>
-  -->
 
     <div class="form-group">
     <div class="form-group col-md-3">
