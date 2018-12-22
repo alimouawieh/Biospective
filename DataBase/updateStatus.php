@@ -16,9 +16,7 @@ $username = "root";
 $password = "";
 $dbname = "CalenderDB";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -33,16 +31,15 @@ else {
 
 
 if ($conn->query($sql) === TRUE) {
-//    echo "Updated values to table successfully";
 } else {
-//   echo "Error adding to table: " . $conn->error;
+   echo "Error adding to table: " . $conn->error;
 }
 
 
 
 $conn->close();
 
-header("Location: index.php");
+header("Location: ../index.php");
 
 
 

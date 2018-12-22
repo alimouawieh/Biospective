@@ -20,6 +20,8 @@
   <?php
   date_default_timezone_set("America/New_York");
 $date = date("M d, Y");
+
+include("DataBase/alert.php");
    ?>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -56,9 +58,6 @@ $date = date("M d, Y");
   </div>
 
 
-  <?php
-  include("createDB.php");
-  ?>
 
 <div style="position: relative; top:100px;">
 <div class="container">
@@ -71,9 +70,7 @@ $date = date("M d, Y");
   $password = "";
   $dbname = "CalenderDB";
 
-  // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
-  // Check connection
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
   }
@@ -148,7 +145,7 @@ echo '</div>';
 <div class="row ">
 
 <div class="col-2">
-    <form action="updateStatus.php" method="get">
+    <form action="DataBase/updateStatus.php" method="get">
   <button title="Event Completed" type="submit" value="yes" name="Buttom"><span class="accept"></span></button>
 <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
 </form>
@@ -165,7 +162,7 @@ echo '</div>';
 
 
 <div class="col-2">
-<form action="updateStatus.php" method="get">
+<form action="DataBase/updateStatus.php" method="get">
 <button title="Event Not Finished" type="submit" value="no" name="Buttom"><span class="reject"></span></button>
 <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
 </form>

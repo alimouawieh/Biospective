@@ -42,5 +42,5 @@ if ($conn->query($sql_addEvent) === TRUE) {
 
 $conn->close();
 
-header("Location: ../index.php");
+header("Location: index.php");
 ?>
