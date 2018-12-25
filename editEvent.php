@@ -18,43 +18,17 @@
 <body>
 
   <?php
+  include("DataBase/alert.php");
   date_default_timezone_set("America/New_York");
 $date = date("M d, Y");
+$mindate=date("Y-m-d");
+$mintime=date("H:i");
+include("navbar.php");
 
-include("DataBase/alert.php");
    ?>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" style="color:yellow; position:relative; left:500px;" href="index.php">Calendar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" style="color:yellow; position:relative; left:600px;" href="sortTitle.php">Title View <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow;position:relative; left:700px;" href="sortDate.php">Date View</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow; position:relative; left:800px;" href="calendarView.php">Calendar View</a>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; position:relative; left:1000px; top:13px;" ><?=$date?></p>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; " ><div id="time" style="color:orange; position:relative; left:1100px; top:-3px; "></div></p>
-        </li>
-      </ul>
-
-    </div>
-  </nav>
-
-  <div class="d-flex justify-content-center" >
-    <h1 style="color:yellow;"> Calendar </h1>
-  </div>
+  
 
 <?php
 
@@ -62,17 +36,7 @@ include("DataBase/alert.php");
 $id = $_GET['id'];
 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "CalenderDB";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("DataBase/connectDB.php");
 
 
 
@@ -169,7 +133,7 @@ while ($row = mysqli_fetch_array($sql))
 <div id="dateDIV" style="color:white; position:relative; top:50px; ">
   <label for="title">Date:</label>
   <form action="DataBase/editEventDB.php" method="get">
-  <input type="date" class="form-control" id="date" name="input" required>
+  <input type="date" class="form-control" id="date" name="input" min="<?=$mindate?>" required>
   <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
   <input type='hidden' name='type' value='date'/>
   <button title="Edit Date" class="btn btn-success" style="width:115px; position:relative; top:20px; left:25px;" type="submit" >Submit</button>
@@ -178,9 +142,9 @@ while ($row = mysqli_fetch_array($sql))
 
 
 <div id="timeDIV" style="color:white; position:relative; top:50px; ">
-  <label for="time">Date:</label>
+  <label for="time">Time:</label>
   <form action="DataBase/editEventDB.php" method="get">
-  <input type="time" class="form-control" id="date" name="input" required>
+  <input type="time" class="form-control" id="date" name="input" min="<?=$mintime?>" required>
   <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
   <input type='hidden' name='type' value='time'/>
   <button title="Edit Date" class="btn btn-success" style="width:115px; position:relative; top:20px;left:5px;" type="submit" >Submit</button>
@@ -298,30 +262,3 @@ function timeFunction() {
 
 
 </body>
-
-<script>
-
-
-
-function checkTime(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
-
-function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  // add a zero in front of numbers<10
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
-  t = setTimeout(function() {
-    startTime()
-  }, 500);
-}
-startTime();
-</script>

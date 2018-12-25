@@ -18,44 +18,12 @@
 <body>
 
   <?php
+  include("DataBase/alert.php");
   date_default_timezone_set("America/New_York");
 $date = date("M d, Y");
 
-include("DataBase/alert.php");
+include("navbar.php");
    ?>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" style="color:yellow; position:relative; left:500px;" href="index.php">Calendar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" style="color:yellow; position:relative; left:600px;" href="sortTitle.php">Title View <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow;position:relative; left:700px;" href="sortDate.php">Date View</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow; position:relative; left:800px;" href="calendarView.php">Calendar View</a>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; position:relative; left:1000px; top:13px;" ><?=$date?></p>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; " ><div id="time" style="color:orange; position:relative; left:1100px; top:-3px; "></div></p>
-        </li>
-      </ul>
-
-    </div>
-  </nav>
-
-
-  <div class="d-flex justify-content-center" >
-    <h1 style="color:yellow;"> Calendar </h1>
-  </div>
 
 
 
@@ -65,15 +33,7 @@ include("DataBase/alert.php");
 
 
   <?php
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "CalenderDB";
-
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-  }
+include("DataBase/connectDB.php");
 
 
 $sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender ORDER BY title");
@@ -205,32 +165,6 @@ echo '</div>';
 </div>
 
 
-<script>
-
-
-
-function checkTime(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
-
-function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  // add a zero in front of numbers<10
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
-  t = setTimeout(function() {
-    startTime()
-  }, 500);
-}
-startTime();
-</script>
 
 
 

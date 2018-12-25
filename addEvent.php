@@ -14,44 +14,16 @@
 <body>
 
   <?php
+  include("DataBase/alert.php");
   date_default_timezone_set("America/New_York");
-$date = date("M d, Y");
-
-include("DataBase/alert.php");
+  $date = date("M d, Y");
+  $mindate=date("Y-m-d");
+  $mintime=date("H:i");
+  include("navbar.php");
    ?>
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" style="color:yellow; position:relative; left:500px;" href="index.php">Calendar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" style="color:yellow; position:relative; left:600px;" href="sortTitle.php">Title View <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow;position:relative; left:700px;" href="sortDate.php">Date View</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow; position:relative; left:800px;" href="calendarView.php">Calendar View</a>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; position:relative; left:1000px; top:13px;" ><?=$date?></p>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; " ><div id="time" style="color:orange; position:relative; left:1100px; top:-3px; "></div></p>
-        </li>
-      </ul>
-
-    </div>
-  </nav>
-
-  <div class="d-flex justify-content-center" >
-    <h1 style="color:yellow;"> Calendar </h1>
-  </div>
+  
 
 
 <div style= "  position: relative; top: 100px;">
@@ -76,14 +48,14 @@ include("DataBase/alert.php");
     <div class="form-group">
     <div class="form-group col-md-3">
       <label for="dueDate">Due Date:</label>
-      <input type="date" class="form-control" id="dueDate" name="dueDate" required>
+      <input type="date" class="form-control" id="dueDate" name="dueDate" min="<?=$mindate?>" required>
     </div>
     </div>
 
     <div class="form-group">
     <div class="form-group col-md-3">
       <label for="dueTime">Due Time:</label>
-      <input type="time" class="form-control" id="dueTime" name="dueTime" required>
+      <input type="time" class="form-control" id="dueTime" name="dueTime" min="<?=$mintime?>" required>
     </div>
     </div>
 
@@ -103,30 +75,4 @@ include("DataBase/alert.php");
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 
-<script>
-
-
-
-function checkTime(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
-
-function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  // add a zero in front of numbers<10
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
-  t = setTimeout(function() {
-    startTime()
-  }, 500);
-}
-startTime();
-</script>
 </html>
