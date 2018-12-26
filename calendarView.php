@@ -22,93 +22,32 @@ include("DataBase/alert.php");
   <?php
   date_default_timezone_set("America/New_York");
 $date = date("M d, Y");
+include("navbar.php");
+
    ?>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" style="color:yellow; position:relative; left:500px;" href="index.php">Calendar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" style="color:yellow; position:relative; left:600px;" href="sortTitle.php">Title View <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow;position:relative; left:700px;" href="sortDate.php">Date View</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow; position:relative; left:800px;" href="calendarView.php">Calendar View</a>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; position:relative; left:1000px; top:13px;" ><?=$date?></p>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; " ><div id="time" style="color:orange; position:relative; left:1100px; top:-3px; "></div></p>
-        </li>
-      </ul>
-
-    </div>
-  </nav>
-
+<div class="form-horizontal">
+<div style="position:relative; top:50px;" class="d-flex justify-content-center">
+</div>
+<?php
+include("example.php");
+?>
+</div>
+<div style="position:relative; left:50px;">
+<div class="d-flex justify-content-center" >
 
 <?php
-date_default_timezone_set("America/New_York");
-
-if(isset($_GET['date']))
+if(isset($_GET['id']))
 {
-  $d= $_GET['date'];
-}
-else {
-  $d = date("Y-m-d");
-}
-
-$date = date("M d, Y");
+  $id =$_GET['id'];
+  include("DataBase/connectDB.php");
 
 
- ?>
-
-  <div class="d-flex justify-content-center" >
-    <h1 style="color:yellow;"> Calendar </h1>
-  </div>
-
-
-  <div class="d-flex justify-content-center" >
-    <div class="form-group col-md-2">
-      <form method="get" action="calendarView.php">
-      <label for="dueDate" style="color:orange;">Pick Date:</label>
-      <input type="date" class="form-control" id="dueDate" name="date" required>
-      <button title="Edit Date" class="btn btn-success" style="width:115px; position:relative; top:10px;left:5px;" type="submit" >Submit</button>
-    </form>
-    </div>
-  </div>
-
-
-  <div style="position: relative; top:10px;">
-  <div class="container">
-  <div class="row justify-content-around">
-
-
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "CalenderDB";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-
-  $sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender WHERE dueDate='$d'");
+  $sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender where id='$id'");
 
 
   while ($row = mysqli_fetch_array($sql_selectAll))
   {
-
-
   $check = $row['status'];
   $dueTime = $row['dueTime'];
   $d = strtotime($dueTime);
@@ -167,7 +106,7 @@ $date = date("M d, Y");
     ?>
 
 
-  <div style="position:relative; left:58px;">
+  <div style="position:relative; left:40px;">
   <div class="row ">
 
   <div class="col-2">
@@ -212,51 +151,9 @@ $date = date("M d, Y");
     $conn->close();
 
 
-     ?>
-
-
-
-
-    <div class="form-group">
-  <div class="d-flex justify-content-center">
-      <form action="addEvent.php">
-    <button type="submit"><span class="credits"></span></button>
-  </form>
-  </div>
-  </div>
-
-
-  </div>
-  </div>
-  </div>
-
+}
+ ?>
+</div>
+</div>
 
 </body>
-
-<script>
-
-
-
-function checkTime(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
-
-function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-
-  // add a zero in front of numbers<10
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
-  t = setTimeout(function() {
-    startTime()
-  }, 500);
-}
-startTime();
-</script>

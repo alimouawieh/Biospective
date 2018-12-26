@@ -14,17 +14,7 @@ $timeNow = date('Y-m-d G:i:s');
 
 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "CalenderDB";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("connectDB.php");
 
 
 $sql_addEvent = "INSERT INTO todoCalender (title, description, status, dueDate,dueTime, createdAt)
@@ -42,5 +32,5 @@ if ($conn->query($sql_addEvent) === TRUE) {
 
 $conn->close();
 
-header("Location: index.php");
+header("Location: ../index.php");
 ?>

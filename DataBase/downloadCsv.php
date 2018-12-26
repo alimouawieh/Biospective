@@ -1,17 +1,7 @@
 <?php
 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "CalenderDB";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("connectDB.php");
 
 header('Content-type: text/csv');
 header('Content-Disposition: attachment; filename="demo.csv"');
@@ -25,6 +15,7 @@ $sql=  mysqli_query($conn, "SELECT *FROM todocalender ");
 while ($row = mysqli_fetch_assoc($sql))
 
 {
+  $array = array();
   fputcsv($file, $row);
 }
 

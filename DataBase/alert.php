@@ -11,15 +11,7 @@ var displayArray= [];
 </script>
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "CalenderDB";
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("connectDB.php");
 
 
 $sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender");
@@ -50,7 +42,7 @@ var title = "<?php echo $title ?>";
 var dueTime = "<?php echo $time ?>";
 var display = "Reminder: " + title + " at " + dueTime ;
 
-alertTime = alertTime - 300000;
+alertTime = alertTime - 3600000;
 if (alertTime > 0)
 {
 displayArray.push(display);

@@ -18,133 +18,58 @@
 <body>
 
   <?php
-
-include("DataBase/alert.php");
-
-  date_default_timezone_set("America/New_York");
-$date = date("M d, Y");
+include("DataBase/alert.php"); //includes the an alert if an event will occur and includes the navbar
+include("navbar.php");
    ?>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" style="color:yellow; position:relative; left:500px;" href="index.php">Calendar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" style="color:yellow; position:relative; left:600px;" href="sortTitle.php">Title View <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow;position:relative; left:700px;" href="sortDate.php">Date View</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:yellow; position:relative; left:800px;" href="calendarView.php">Calendar View</a>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; position:relative; left:1000px; top:13px;" ><?=$date?></p>
-        </li>
-        <li class="nav-item">
-          <p class="nav-link" style="color:orange; " ><div id="time" style="color:orange; position:relative; left:1100px; top:-3px; "></div></p>
-        </li>
-      </ul>
-
-    </div>
-  </nav>
-
-  <div class="d-flex justify-content-center" >
-    <h1 style="color:yellow;"> Calendar </h1>
-  </div>
-
 
   <?php
   include("DataBase/createDB.php");
   ?>
-
 <div style="position: relative; top:100px;">
 <div class="container">
 <div class="row justify-content-around">
-
-
   <?php
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "CalenderDB";
+include("DataBase/connectDB.php");   //connects to DataBase
 
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  // Check connection
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-  }
-
-
-$sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender");
-
-
-while ($row = mysqli_fetch_array($sql_selectAll))
+$sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender"); //query that gets everything from database
+while ($row = mysqli_fetch_array($sql_selectAll)) //fetches everything in the database
 {
 
 
-$check = $row['status'];
+$check = $row['status']; //gets the date and time from database, format them to human language using strotime and extract day,month,year,hour and minute
 $dueTime = $row['dueTime'];
 $d = strtotime($dueTime);
 $date = date("h:i  A",$d);
 
 $day = strtotime($row['dueDate']);
 $daySelect =  date("D",$day);
-
+$title = $row['title'];
 echo '<div class="col-3">';
-
-
-if($check == "yes")
-{
-
-
-echo'  <div class="card text-white bg-secondary mb-3" style="width: 26rem; height:35rem;">';
-
-}
-else
-{
-
-  echo '<div class="card text-white bg-secondary mb-3" style="width: 26rem; height:35rem;">';
-
-}
+echo '<div class="card text-white bg-secondary mb-3" style="width: 26rem; height:35rem;">'; //properties of a card to output from bootstrap
 ?>
-
- <div class="card-header"><h5> <?= $row['title'] ?></h5> </div>
+<div  class="card-header"><h5><?=$row["title"]?></h5> </div>
 <div class="card-body">
     <h5 class="card-title"><?= $daySelect ?>       <?= $date ?></h5>
     <p class="card-text"><?= $row['dueDate'] ?></p>
  <p class="card-text"><?= $row['description'] ?></p>
-
-
 <div class="card-footer">
 
 
   <p>Created: <?=$row['createdAt']?></p>
 
-  <?php   if( $row['updatedAt'] != "0000-00-00 00:00:00")   { ?>
+  <?php   if( $row['updatedAt'] != "0000-00-00 00:00:00")   { ?> <!-- checks if the event have been updates,if true it will ouput the updated date -->
   <p>Updated: <?=$row['updatedAt']?></p> <?php } ?>
  <?php if($check=="yes")
  {
   ?>
-
-
-   <p>Completed: <?=$row['completedAt']?></p>
-
-
+<p style="color: #72F509;">Completed: <?=$row['completedAt']?></p>  <!-- checks if the event have been completed,if true it outputs the time of completion -->
 <?php } ?>
 </div>
  </div>
-
-
  <?php
 echo '</div>';
-  ?>
 
+  ?>
 
 <div style="position:relative; left:58px;">
 <div class="row ">
@@ -187,14 +112,8 @@ echo '</div>';
 }
 
 echo '</div>';
-
   $conn->close();
-
-
    ?>
-
-
-
 
   <div class="form-group">
 <div class="d-flex justify-content-center">
@@ -223,38 +142,4 @@ echo '</div>';
 </div>
 </div>
 </div>
-
-
-<script>
-
-
-
-function checkTime(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
-
-function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  // add a zero in front of numbers<10
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
-  t = setTimeout(function() {
-    startTime()
-  }, 500);
-}
-startTime();
-
-
-</script>
-
-
-
-
 </body>
