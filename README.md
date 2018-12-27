@@ -1,7 +1,7 @@
 # Biospective
 Calendar
 
-**Introduction
+#Introduction
 
 The project is a virtual calendar that can be opened and used using any browser from a desktop or laptop. The virtual calendar will provide it's users with the ability
 to add events that need to be completed. The user is able to edit any event and change the due time or description for example. Events can be marked as completed or uncomplete. Moreover the calendar is able to list all events sorted by title alphabet or Dates, the calendar will also remind the user an hour before due time.
@@ -12,7 +12,7 @@ Note: I have decided to build using these technologies for several reasons. I ch
 uses this technology. I choose php mainly for the same reason as HTML, since both languages are the most common in building web apps. Building the backEnd using php usually makes it easier to interact with the database and almost all hosting providers usually supports php. No company starts it is buisness without building a website so understanding how to use these technologies is a great asset. Finally, I choose Javascript because it is the best language that provides a user with dynamic and interactive experience. Javascript is considered a modern technology where it is been used more and more often. Additionally Javascript is an interactive language and can be added and used
 within php or HTML code.
 
-**Instructions/SetUp
+#Instructions/SetUp
 
 -Download Xampp and Install https://www.apachefriends.org/index.html
 
