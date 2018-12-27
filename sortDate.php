@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  <!-- folder have the same properties as the index file and same algorithm, except for the database query it changes -->
 
   <?php
   include("DataBase/alert.php");
@@ -23,55 +24,31 @@
 $date = date("M d, Y");
 include("navbar.php");
    ?>
-
-
-
-
-
-
-
 <div style="position: relative; top:100px;">
 <div class="container">
 <div class="row justify-content-around">
-
-
-  <?php
-  include("DataBase/connectDB.php");
-
-
+<?php
+  include("DataBase/connectDB.php");  // Database Query using order by to get data from databse ordered by the due date
 $sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender ORDER BY dueDate");
-
 
 while ($row = mysqli_fetch_array($sql_selectAll))
 {
-
-
 $check = $row['status'];
 $dueTime = $row['dueTime'];
 $d = strtotime($dueTime);
 $date = date("h:i  A",$d);
-
 $day = strtotime($row['dueDate']);
 $daySelect =  date("D",$day);
-
 echo '<div class="col-3">';
-
-
 if($check == "yes")
 {
-
-
 echo'  <div class="card text-white bg-secondary mb-3" style="width: 26rem; height:35rem;">';
-
 }
 else
 {
-
   echo '<div class="card text-white bg-secondary mb-3" style="width: 26rem; height:35rem;">';
-
 }
 ?>
-
  <div class="card-header"><h5> <?= $row['title'] ?></h5> </div>
 <div class="card-body">
     <h5 class="card-title"><?= $daySelect ?>       <?= $date ?></h5>
@@ -83,26 +60,18 @@ else
 
 
   <p>Created: <?=$row['createdAt']?></p>
-
   <?php   if( $row['updatedAt'] != "0000-00-00 00:00:00")   { ?>
   <p>Updated: <?=$row['updatedAt']?></p> <?php } ?>
  <?php if($check=="yes")
  {
   ?>
-
-
-   <p>Completed: <?=$row['completedAt']?></p>
-
-
+   <p style="color: #72F509;">Completed: <?=$row['completedAt']?></p>
 <?php } ?>
 </div>
  </div>
-
-
  <?php
 echo '</div>';
   ?>
-
 
 <div style="position:relative; left:58px;">
 <div class="row ">
@@ -130,26 +99,21 @@ echo '</div>';
 <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
 </form>
   </div>
-
   </div>
   </div>
-
   <br>
  <br>
   <br>
 
   </div>
+
   <?php
-
-
 }
 
 echo '</div>';
 
   $conn->close();
-
-
-   ?>
+?>
 
 
 

@@ -1,6 +1,8 @@
 
-<?php
 
+
+<?php
+//credintials to connect to database, the file was included and used in almost all pages or whenever there is query.
 $servername = "localhost";
 $username = "root";
 $password = "";

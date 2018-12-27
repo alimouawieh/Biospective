@@ -15,7 +15,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 <?php
-include("DataBase/alert.php");
+include("DataBase/alert.php"); //includes alert for an hour before due time of an event
 ?>
 <body>
 
@@ -23,26 +23,25 @@ include("DataBase/alert.php");
   date_default_timezone_set("America/New_York");
 $date = date("M d, Y");
 include("navbar.php");
-
-   ?>
+ ?>
 
 <div class="form-horizontal">
 <div style="position:relative; top:50px;" class="d-flex justify-content-center">
 </div>
 <?php
-include("example.php");
+include("calendar.php");    //includes a calendar view that display a big calendar with events that are saved
 ?>
 </div>
 <div style="position:relative; left:50px;">
 <div class="d-flex justify-content-center" >
 
 <?php
-if(isset($_GET['id']))
+if(isset($_GET['id']))    //checks if a user choose any event in the calendar view to display it, else it only views the calendar
 {
   $id =$_GET['id'];
   include("DataBase/connectDB.php");
 
-
+    //Database Query to check on which event user pressed on the calendar and display it in the page
   $sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender where id='$id'");
 
 
@@ -52,7 +51,6 @@ if(isset($_GET['id']))
   $dueTime = $row['dueTime'];
   $d = strtotime($dueTime);
   $date = date("h:i  A",$d);
-
   $day = strtotime($row['dueDate']);
   $daySelect =  date("D",$day);
 
@@ -61,16 +59,11 @@ if(isset($_GET['id']))
 
   if($check == "yes")
   {
-
-
   echo'  <div class="card text-white bg-secondary mb-3" style="width: 26rem; height:35rem;">';
-
   }
   else
   {
-
     echo '<div class="card text-white bg-secondary mb-3" style="width: 26rem; height:35rem;">';
-
   }
   ?>
 
@@ -91,11 +84,7 @@ if(isset($_GET['id']))
    <?php if($check=="yes")
    {
     ?>
-
-
-     <p>Completed: <?=$row['completedAt']?></p>
-
-
+    <p style="color: #72F509;">Completed: <?=$row['completedAt']?></p>
   <?php } ?>
   </div>
    </div>
@@ -142,13 +131,9 @@ if(isset($_GET['id']))
 
     </div>
     <?php
-
-
   }
-
   echo '</div>';
-
-    $conn->close();
+  $conn->close();
 
 
 }

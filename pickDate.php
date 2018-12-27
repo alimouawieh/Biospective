@@ -24,12 +24,9 @@ include("DataBase/alert.php");
 $date = date("M d, Y");
 include("navbar.php");
    ?>
-
-
-
 <?php
 
-
+//checks if a user picked a date if not, it is assigned to the current page
 if(isset($_GET['date']))
 {
   $d= $_GET['date'];
@@ -64,7 +61,7 @@ $date = date("M d, Y");
 
     <?php
   include("DataBase/connectDB.php");
-
+              //sql query to display the data of current date or a date the user chooses.
   $sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender WHERE dueDate='$d'");
 
 
@@ -78,7 +75,7 @@ $date = date("M d, Y");
   $date = date("h:i  A",$d);
 
   $day = strtotime($row['dueDate']);
-  $daySelect =  date("D",$day);
+  $daySelect =  date("D",$day);                 //**** Rest is same as index *****
 
   echo '<div class="col-3">';
 
@@ -173,12 +170,7 @@ $date = date("M d, Y");
   echo '</div>';
 
     $conn->close();
-
-
      ?>
-
-
-
 
     <div class="form-group">
   <div class="d-flex justify-content-center">
