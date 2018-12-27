@@ -2,6 +2,7 @@
 Calendar
 
 *Introduction
+
 The project is a virtual calendar that can be opened and used using any browser from a desktop or laptop. The virtual calendar will provide it's users with the ability
 to add events that need to be completed. The user is able to edit any event and change the due time or description for example. Events can be marked as completed or uncomplete. Moreover the calendar is able to list all events sorted by title alphabet or Dates, the calendar will also remind the user an hour before due time.
 
@@ -14,11 +15,17 @@ within php or HTML code.
 *Instructions/SetUp
 
 -Download Xampp and Install https://www.apachefriends.org/index.html
+
 -After unzipping the folder,copy the folder Biospective
+
 -Paste the folder in htdocs folder that can be found inside Xampp folder where Xampp is installed
+
 -Start or run Xampp.exe
+
 -Press start next to the module Apache and press on another start next to MySql to run the enviroment
+
 Note: You might need to disable or stop temporary any Mysql original installed on the computer
+
 -Run the link http://localhost/Biospective on any browser and the app should start
 
 Note: In case you decided to run the project using different tools. please change the credentials of the database connections servername, username and password in the
