@@ -74,7 +74,7 @@ echo '</div>';
 <div style="position:relative; left:58px;">
 <div class="row ">
 
-<div class="col-2">
+<div class="col-2">       <!-- Button to submit that the event have been completed -->
     <form action="DataBase/updateStatus.php" method="get">
   <button title="Event Completed" type="submit" value="yes" name="Buttom"><span class="accept"></span></button>
 <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
@@ -83,7 +83,7 @@ echo '</div>';
 
 
 
-<div class="col-2">
+<div class="col-2">   <!-- Button to to edit a specific  -->
 <form action="editEvent.php" method="get">
 <button title="Edit Event" type="submit" value="" name="Buttom"><span class="edit"></span></button>
 <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
@@ -91,7 +91,7 @@ echo '</div>';
   </div>
 
 
-<div class="col-2">
+<div class="col-2">   <!-- Button to submit that the event have not been completed -->
 <form action="DataBase/updateStatus.php" method="get">
 <button title="Event Not Finished" type="submit" value="no" name="Buttom"><span class="reject"></span></button>
 <input type='hidden' name='id' value='<?= $row["id"] ?>'/>
@@ -127,7 +127,7 @@ echo '</div>';
 <div class="form-group">
 <div class="d-flex justify-content-center">
   <div class="row">
-  <form action="DataBase/downloadCsv.php">
+  <form action="DataBase/downloadCsv.php">        <!-- 2 buttons that connects to database and download json or CSV files with allthe data  -->
 <button type="submit" class="btn btn-default" style="position:relative; right:3px;"><span class="glyphicon glyphicon-download"></span>Download CVS</button>
 </form>
 

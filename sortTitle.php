@@ -24,7 +24,7 @@ $date = date("M d, Y");
 
 include("navbar.php");
    ?>
-
+            <!-- **** Same as index except this page displays all events but sorted according to title alphabet order -->
 
 
 <div style="position: relative; top:100px;">
@@ -35,7 +35,7 @@ include("navbar.php");
   <?php
 include("DataBase/connectDB.php");
 
-
+//sql query which uses order by to get data sorted by alphabitical order of the title
 $sql_selectAll=  mysqli_query($conn, "SELECT * FROM todocalender ORDER BY title");
 
 
@@ -148,9 +148,6 @@ echo '</div>';
 
    ?>
 
-
-
-
   <div class="form-group">
 <div class="d-flex justify-content-center">
     <form action="addEvent.php">
@@ -163,10 +160,5 @@ echo '</div>';
 </div>
 </div>
 </div>
-
-
-
-
-
 
 </body>
